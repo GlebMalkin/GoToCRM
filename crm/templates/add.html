@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Добавить участника{% endblock %}
+
+{% block content %}
+<a href="/">Назад</a>
+<h1>Добавить</h1>
+
+<form action="/add" method="post">
+    {% csrf_token %}
+    <strong>Имя: </strong> <input type="text" name="name"/><br>
+    <strong>Фамилия: </strong> <input type="text" name="surname"/><br>
+    <strong>Направление:</strong>
+    <select name="course_id">
+        <option value="">Нет</option>0
+        {% for course in courses %}
+            <option value="{{ course.id }}">{{ course.name }}</option>
+        {% endfor %}
+    </select>
+    <br>
+
+    <!-- TODO: Добавить другие поля -->
+    <input type="submit" value="Добавить">
+</form>
+{% endblock %}
